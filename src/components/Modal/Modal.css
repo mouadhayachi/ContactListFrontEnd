@@ -1,0 +1,9 @@
+.btn-update {
+  width: 120px;
+  height: 40px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}

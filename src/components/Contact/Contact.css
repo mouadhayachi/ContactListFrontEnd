@@ -1,0 +1,14 @@
+.card-user {
+  width: 18rem;
+  margin: 10px;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn-update {
+  width: 120px;
+  margin: 2px;
+}

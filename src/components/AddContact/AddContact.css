@@ -1,0 +1,11 @@
+.addcontact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+}
+
+.input-user ,.btn-action {
+  width: 200px;
+  margin: 10px 0px 10px;
+}
