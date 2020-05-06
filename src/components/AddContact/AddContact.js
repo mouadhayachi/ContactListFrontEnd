@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -6,9 +6,21 @@ import { Button } from "react-bootstrap";
 import "./AddContact.css";
 
 function AddContact(props) {
-  const [name, setName] = useState(props.user ? props.user.name : "");
-  const [email, setEmail] = useState(props.user ? props.user.email : "");
-  const [phone, setPhone] = useState(props.user ? props.user.phone : "");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    async function getUser() {
+      const response = await axios.get(
+        `http://localhost:4000/${props.match.params.id}`
+      );
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setPhone(response.data.phone);
+    }
+    getUser();
+  }, [props.match.params.id]);
 
   const add = () => {
     axios
@@ -19,7 +31,11 @@ function AddContact(props) {
 
   const update = () => {
     axios
-      .put(`http://localhost:4000/${props.user._id}`, { name, email, phone })
+      .put(`http://localhost:4000/${props.match.params.id}`, {
+        name,
+        email,
+        phone,
+      })
       .then((res) => console.log("Contact was updated with success"))
       .catch((err) => console.error(err));
   };
@@ -52,10 +68,10 @@ function AddContact(props) {
           variant="primary"
           className="btn-action"
           onClick={() => {
-            props.user ? update() : add();
+            props.match.params.id ? update() : add();
           }}
         >
-          {props.name === "Update" ? "Update" : "Add Contact"}
+          {props.match.params.id ? "Update" : "Add Contact"}
         </Button>
       </Link>
     </div>

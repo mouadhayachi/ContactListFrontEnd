@@ -16,12 +16,13 @@ function App() {
           <Link to="/contactlist">
             <Button className="btn btn-warning btn-home">Contact List</Button>
           </Link>
-          <Link to="/addcontact">
+          <Link to="/add">
             <Button className="btn btn-primary btn-home">Add Contact</Button>
           </Link>
         </div>
       </div>
-      <Route exact path="/addcontact" component={AddContact}></Route>
+      <Route exact path="/add" component={AddContact}></Route>
+      <Route exact path="/edit/:id" component={AddContact}></Route>
       <Route exact path="/contactlist" component={ContactList} />
     </Router>
   );

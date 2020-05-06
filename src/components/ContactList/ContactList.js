@@ -15,7 +15,7 @@ const ContactList = () => {
       setUserDatabase(response.data);
     }
     getUsers();
-  });
+  },[userDatabase]);
 
   return (
     <Fragment>
